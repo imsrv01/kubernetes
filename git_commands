@@ -1,0 +1,11 @@
+git clone https://github.com/imsrv01/kubernetes.git
+cd kubernetes
+mkdir rsvp
+# copy files
+git init
+git add --all
+git config --global user.email ""
+git config --global user.name ""
+git commit -m 'Initial'
+git remote set-url origin https://github.com/imsrv01/kubernetes.git
+git push -u origin master
