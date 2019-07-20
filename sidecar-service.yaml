@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2019-07-20T22:14:25Z"
+  labels:
+    app: sidecar
+  name: sidecar
+  namespace: default
+  resourceVersion: "3250"
+  selfLink: /api/v1/namespaces/default/services/sidecar
+  uid: bc0385ba-ab3b-11e9-92cd-024211e0c703
+spec:
+  clusterIP: 10.110.241.104
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32640
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: sidecar
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
