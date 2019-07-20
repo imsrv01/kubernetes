@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sidecar
+  name: sidecar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sidecar
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sidecar
+    spec:
+      volumes:
+      - name: volume1
+        hostPath:
+          path: /var/disk1
+      containers:
+      - image: alpine
+        name: alpine
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do date >> /var/log/app.txt; sleep 5 ; done"]
+        resources: {}
+        volumeMounts:
+        -  name: volume1
+           mountPath: /var/log/app.txt
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        -  name: volume1
+           mountPath: /usr/share/nginx/html  
+status: {}
